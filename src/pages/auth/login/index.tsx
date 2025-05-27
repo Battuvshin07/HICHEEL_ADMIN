@@ -6,9 +6,16 @@ import ProForm, {
 import { useRequest } from "ahooks";
 import { Button, notification } from "antd";
 import { Label } from "components/label";
+import { UserRoleType } from "config";
 import { useAuthContext } from "context/auth";
 import { Action } from "context/type";
-import { StudentMenuItems } from "layout/dashboard/menu_items";
+import {
+  menuCashierItems,
+  menuCustomerItems,
+  menuFininciarItems,
+  menuItems,
+  menuManagerItems,
+} from "layout/dashboard/menu_items";
 import { FC, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import auth from "service/auth";
@@ -24,23 +31,28 @@ const Login: FC = () => {
   const login = useRequest(auth.login, {
     manual: true,
     onSuccess: (data) => {
-      auth.saveToken(data.token);
-      setAuth([Action.SIGN_IN, data.user]);
-      // if (data.user.role_name === UserRoleType.transport_manager) {
-      //   navigate(menuManagerItems[0].path);
-      // } else if (data.user.role_name === UserRoleType.cashier) {
-      //   navigate(menuCashierItems[0].path);
-      // } else if (data.user.role_name === UserRoleType.financier) {
-      //   navigate(menuFininciarItems[0].path);
-      // } else if (data.user.role_name === UserRoleType.customer) {
-      //   navigate(menuCustomerItems[0].path);
-      // } else {
-      //   navigate(menuItems[0].path);
-      // }
-      navigate(StudentMenuItems[0].path);
-      notification.success({
-        message: "Амжилттай нэвтэрлээ",
-      });
+      if (data && data.token && data.role_name) {
+        auth.saveToken(data.token);
+        setAuth([Action.SIGN_IN, data]);
+        if (data.role_name === UserRoleType.transport_manager) {
+          navigate(menuManagerItems[0].path);
+        } else if (data.role_name === UserRoleType.cashier) {
+          navigate(menuCashierItems[0].path);
+        } else if (data.role_name === UserRoleType.financier) {
+          navigate(menuFininciarItems[0].path);
+        } else if (data.role_name === UserRoleType.customer) {
+          navigate(menuCustomerItems[0].path);
+        } else {
+          navigate(menuItems[0].path);
+        }
+        notification.success({
+          message: "Амжилттай нэвтэрлээ",
+        });
+      } else {
+        notification.error({
+          message: "Login response is not valid",
+        });
+      }
     },
     onError: (err) => {
       notification.error({
@@ -51,7 +63,14 @@ const Login: FC = () => {
 
   return (
     <div className="bg-white rounded-xl w-full">
-      <div className="align-left flex justify-center">End Logo tawi</div>
+      <div className="align-left flex justify-center">
+        <img
+          src="/images/til-logo.jpg"
+          alt="logo"
+          width={140}
+          className="mb-7"
+        />
+      </div>
       <ProForm<LoginData>
         formRef={formRef}
         className="mt-5"

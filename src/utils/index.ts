@@ -168,7 +168,7 @@ export const initFilter = {
 };
 export const initPagination = {
   current: 0,
-  pageSize: 20,
+  pageSize: 10,
 };
 
 export const EmployePagination = {

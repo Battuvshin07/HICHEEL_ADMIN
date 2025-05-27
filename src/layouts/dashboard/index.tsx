@@ -1,5 +1,5 @@
-import { useAuthContext } from "context/auth";
-import { FC } from "react";
+import { AuthContext } from 'context/auth';
+import { FC, useContext } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import WorkerLayout from "./layout";
 
@@ -8,7 +8,7 @@ type Props = {
   props?: any;
 };
 const DashboardLayout: FC<Props> = ({}) => {
-  const [{ authorized, user }] = useAuthContext();
+  const [{ authorized, user }] = useContext(AuthContext);
   if (!authorized) return <Navigate to={"/auth/login"} />;
   return (
     <div id="pro-layout">

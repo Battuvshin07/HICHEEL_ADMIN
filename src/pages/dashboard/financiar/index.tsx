@@ -3,7 +3,9 @@ import { IfCondition } from "components/condition";
 import { FininciarTab, FininciarTabtButton } from "config";
 import { useState } from "react";
 import CustomerCompany from "./pages/CustomerCompany";
-import ForeignCustomer from "./pages/ForeignCustomer";
+import AdditionalFeeSettings from "./pages/AdditionalFeeSettings";
+import CancellingTicket from "./pages/CancellingTicket";
+import CustomerAccountSettlement from "./pages/CustomerAccountSettlement";
 
 export const Fininciar: React.FC<any> = ({ data }) => {
   const [tab, setTab] = useState<any>(FininciarTab.CustomerCompany);
@@ -14,8 +16,16 @@ export const Fininciar: React.FC<any> = ({ data }) => {
       label: "Харилцагч компани",
     },
     {
-      value: FininciarTab.ForeignCustomer,
-      label: "Гадаад тээвэр зууч",
+      value: FininciarTab.AdditionalFeeSettings,
+      label: "Нэмэлт хураамж тохиргоо",
+    },
+    {
+      value: FininciarTab.CustomerAccountSettlement,
+      label: "Харилцагчдын дансны тооцоо",
+    },
+    {
+      value: FininciarTab.CancellingTicket,
+      label: "Э/Х тасалбар хүчингүй болгох",
     },
   ];
 
@@ -46,8 +56,16 @@ export const Fininciar: React.FC<any> = ({ data }) => {
         whenTrue={<CustomerCompany />}
       />
       <IfCondition
-        condition={tab === FininciarTab.ForeignCustomer}
-        whenTrue={<ForeignCustomer />}
+        condition={tab === FininciarTab.AdditionalFeeSettings}
+        whenTrue={<AdditionalFeeSettings />}
+      />
+      <IfCondition
+        condition={tab === FininciarTab.CancellingTicket}
+        whenTrue={<CancellingTicket />}
+      />
+      <IfCondition
+        condition={tab === FininciarTab.CustomerAccountSettlement}
+        whenTrue={<CustomerAccountSettlement />}
       />
     </>
   );

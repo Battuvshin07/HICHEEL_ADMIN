@@ -1,5 +1,3 @@
-import type { LedgerType } from "../accountSettlement/ledger/type";
-
 export interface CustomerCompanyType {
   id: number;
   created_at: Date;
@@ -10,6 +8,6 @@ export interface CustomerCompanyType {
   is_broker: boolean;
   ledger_id: number;
   user: any;
-  ledger: LedgerType;
+  ledger: any;
   contact_number: string;
 }

@@ -23,8 +23,8 @@ const CustomPagination: React.FC<PaginationType> = ({
             {range[0]}-{range[1]} of {total} items
           </div>
         )}
-        defaultPageSize={10}
-        pageSizeOptions={[10, 20, 50, 100, 200, 500]}
+        defaultPageSize={5}
+        pageSizeOptions={[5, 10, 20, 50, 100, 200, 500]}
         responsive
         size="small"
       />

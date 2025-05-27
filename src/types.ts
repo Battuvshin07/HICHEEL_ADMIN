@@ -24,6 +24,8 @@ export interface RemoveModelConfig<T> {
     body?: any;
     cancelTitle?: string;
     customTitle?: string;
+    okText?: string;
+    cancelText?: string;
   };
 }
 export enum FilterDeadline {
@@ -76,6 +78,7 @@ export interface BaseResponse<T> {
 }
 
 export interface PaginationResponse<T> {
+  data: any;
   total: number;
   items: Array<T>;
 }

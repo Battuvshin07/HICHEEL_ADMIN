@@ -9,13 +9,15 @@ import ProForm, {
 import { Col, Row } from "antd";
 import { FORM_ITEM_RULE } from "config";
 import React, { useRef } from "react";
-import { CargoApproachList } from "service/feild_registration/type";
+import { CargoApproach as CargoApproachType } from "service/field_registration/CargoApproach/type";
 import { CapacityOptions, DirectionOptions } from "utils/options";
 
 interface ContainerProps {
-  data: CargoApproachList;
+  data: CargoApproachType;
 }
-const Container: React.FC<ContainerProps> = ({ data }) => {
+
+// Renamed component to avoid conflict
+const CargoApproachForm: React.FC<ContainerProps> = ({ data }) => {
   const form = useRef<ProFormInstance>();
   return (
     <ProForm initialValues={data} formRef={form} submitter={false}>
@@ -254,4 +256,4 @@ const Container: React.FC<ContainerProps> = ({ data }) => {
   );
 };
 
-export default Container;
+export default CargoApproachForm;

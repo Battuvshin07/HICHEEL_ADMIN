@@ -78,13 +78,13 @@ export const Info: FC<IInfoProps> = ({ actionName }) => {
           />
         </Col>
       </Row>
-      {/* {actionName === "create" && ( */}
+      {/* {actionName === "create" && (
       <Row gutter={[24, 24]}>
         <Col span={12}>
           <ProFormText
             name={"email"}
             placeholder={"sample@example.cг"}
-            label="Цахим шуудан"
+            label="Цахим шуудан"  
             rules={[
               {
                 pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
@@ -105,7 +105,7 @@ export const Info: FC<IInfoProps> = ({ actionName }) => {
             }}
           />
         </Col>
-      </Row>
+      </Row> */}
       {/* )} */}
     </SectionContainer>
   );

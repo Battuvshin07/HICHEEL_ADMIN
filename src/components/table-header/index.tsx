@@ -1,13 +1,14 @@
 import { ReloadOutlined } from "@ant-design/icons";
 import { ProFormInstance, ProFormText } from "@ant-design/pro-form";
 import { useDebounceFn } from "ahooks";
-import { Button } from "antd"; // Import your component library
+import { Space, Button, DatePicker } from "antd"; // Import your component library
 import { atom, useAtom } from "jotai";
 import React, { useRef, useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import { ActionComponentProps } from "types";
 import { exportFromList, exportFromTable } from "utils/export";
 import { CreateButton, ExportButton } from "..";
+const { RangePicker } = DatePicker;
 
 interface TableHeaderProps {
   customHeaderTitle?: string | React.ReactNode;
@@ -90,6 +91,21 @@ const InitTableHeader: React.FC<TableHeaderProps> = ({
               {customHeaderTitle}
             </span>
           )}
+          <Space direction="vertical" size={12}>
+            <RangePicker
+              className="border-dis"
+              format="YYYY/MM/DD"
+              picker="date"
+              allowClear={false}
+              style={{ width: "230px", height: "40px" }}
+              onFocus={(event) => {
+                console.log("Focus:", event.target);
+              }}
+              onBlur={(event) => {
+                console.log("Blur:", event.target);
+              }}
+            />
+          </Space>
         </div>
         <div className="flex items-end gap-2 flex-wrap ant-form-item-margin-remove custom-ant-form-item">
           {customAction && customAction}

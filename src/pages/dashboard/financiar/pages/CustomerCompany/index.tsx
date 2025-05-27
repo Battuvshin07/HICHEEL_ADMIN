@@ -37,13 +37,93 @@ const CustomerCompany = () => {
 
   const searchRun = useDebounceFn(list.run, { wait: 1000 });
 
+  const data = [
+    {
+      shortcut_name: "KBL",
+      name: "TL Logistic",
+      is_broker: true,
+      contact_number: "80606848",
+      ledger: { name: "60000" },
+    },
+    {
+      shortcut_name: "KBL",
+      name: "TL Logistic",
+      is_broker: true,
+      contact_number: "80606848",
+      ledger: { name: "60000" },
+    },
+    {
+      shortcut_name: "KBL",
+      name: "TL Logistic",
+      is_broker: true,
+      contact_number: "80606848",
+      ledger: { name: "60000" },
+    },
+    {
+      shortcut_name: "KBL",
+      name: "TL Logistic",
+      is_broker: true,
+      contact_number: "80606848",
+      ledger: { name: "60000" },
+    },
+    {
+      shortcut_name: "TEW",
+      name: "TL Logistic",
+      is_broker: true,
+      contact_number: "80606848",
+      ledger: { name: "60000" },
+    },
+    {
+      shortcut_name: "TEW",
+      name: "TL Logistic",
+      is_broker: false,
+      contact_number: "80606848",
+      ledger: { name: "60000" },
+    },
+    {
+      shortcut_name: "TEW",
+      name: "TL Logistic",
+      is_broker: true,
+      contact_number: "80606848",
+      ledger: { name: "60000" },
+    },
+    {
+      shortcut_name: "TEW",
+      name: "TL Logistic",
+      is_broker: false,
+      contact_number: "80606848",
+      ledger: { name: "60000" },
+    },
+    {
+      shortcut_name: "TEW",
+      name: "TL Logistic",
+      is_broker: true,
+      contact_number: "80606848",
+      ledger: { name: "60000" },
+    },
+    {
+      shortcut_name: "JKL",
+      name: "TL Logistic",
+      is_broker: true,
+      contact_number: "80606848",
+      ledger: { name: "60000" },
+    },
+    {
+      shortcut_name: "JKL",
+      name: "TL Logistic",
+      is_broker: true,
+      contact_number: "80606848",
+      ledger: { name: "60000" },
+    },
+  ];
+
   return (
     <PageCard xR>
       <div className="px-2 pb-0">
         <InitTableHeader
-          addButtonName="Нэмэх"
+          addButtonName="Шинэ"
           customHeaderTitle={<Label title="Харилцагч компанийн жагсаалт" />}
-          searchPlaceHolder="Нэр, данс"
+          searchPlaceHolder="Хайх чингэлгийн дугаар оруулна уу"
           fileName="Харилцагч компанийн жагсаалт"
           setCreate={setCreate}
           search={search}
@@ -58,9 +138,10 @@ const CustomerCompany = () => {
       <ITable<CustomerCompanyType>
         total={list.data?.total}
         loading={list.loading}
-        dataSource={list?.data?.items ?? []}
+        dataSource={data as any}
         refresh={(values) => list.run({ ...filter, ...values })}
         UpdateComponent={UpdateService}
+        DetailComponent={UpdateService}
         form={filter}
         setForm={setFilter}
         columns={[
@@ -116,40 +197,21 @@ const CustomerCompany = () => {
               </span>
             ),
           },
-          {
-            dataIndex: "email",
-            title: "Цахим хаяг",
-            align: "left",
-            width: "10%",
-            render: (_, record) => (
-              <span className="text-sm text-[#475467] font-normal flex text-center ">
-                {record?.user?.email || "-"}
-              </span>
-            ),
-          },
-          {
-            dataIndex: "created_by",
-            title: "Бүртгэсэн ажилтан",
-            align: "left",
-            width: "10%",
-            render: (_, record) => (
-              <span className="text-sm text-[#475467] font-normal flex text-center ">
-                {record?.created_by?.email || "-"}
-              </span>
-            ),
-          },
         ]}
         CreateComponent={CreateService}
         create={create as boolean}
         setCreate={setCreate}
-        // RemoveModelConfig={{
-        //   action: customerCompany.deleteA,
-        //   config: (record) => ({
-        //     uniqueKey: record?.id,
-        //     display: record?.name,
-        //     title: "Remove",
-        //   }),
-        // }}
+        RemoveModelConfig={{
+          action: customerCompany.deleteA, // Delete function from the customerCompany service
+          config: (record) => ({
+            uniqueKey: record?.id, // Unique identifier for the record to be deleted
+            display: record?.name, // Display the company name for confirmation
+            title: "Remove Company", // Title of the deletion confirmation modal
+          }),
+        }}
+        onPaginationChange={(page, pageSize) => {
+          console.log(`Page: ${page}, PageSize: ${pageSize}`);
+        }}
       />
     </PageCard>
   );

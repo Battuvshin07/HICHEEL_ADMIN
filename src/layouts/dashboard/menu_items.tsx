@@ -10,7 +10,7 @@ import {
 export const menuItems = [
   {
     icon: <User01 />,
-    name: "Хэрэглэгчдийн бүртгэл",
+    name: "Ажилчдын бүртгэл",
     path: "/dashboard/employ-registration",
   },
 ];
@@ -96,13 +96,5 @@ export const menuFininciarItems = [
     icon: <File03 />,
     name: "Статистик тайлан",
     path: "/dashboard/report",
-  },
-];
-
-export const StudentMenuItems = [
-  {
-    icon: <PieChart02 />,
-    name: "Лавлах мэдээлэл",
-    path: "/dashboard/financiar",
   },
 ];

@@ -259,6 +259,20 @@ export enum FieldRegistrationTab {
   ArrivalField = "arrival_field",
 }
 
+export enum AccountTab {
+  Account = 0,
+  Transaction = 1,
+}
+
+export interface AccountTabtButton {
+  value: AccountTab;
+  label: string;
+}
+
+export enum TicketTabButton {
+  TicketReport = 0,
+}
+
 export enum FininciarTab {
   CustomerCompany = 0,
   AdditionalFeeSettings = 1,
@@ -273,13 +287,22 @@ export enum registerCustomerEnumTab {
   CustomerCompany = "customer_company",
 }
 
+export interface registerCustomerEnumTabtButton {
+  value:  registerCustomerEnumTab;
+  label: string;
+}
+
+export interface FieldRegistrationTabtButton {
+  value: FieldRegistrationTab;
+  label: string;
+}
 export interface FininciarTabtButton {
   value: FininciarTab;
   label: string;
 }
 
-export interface FieldRegistrationTabtButton {
-  value: registerCustomerEnumTab;
+export interface TicketReporttButton {
+  value: TicketTabButton;
   label: string;
 }
 
@@ -296,8 +319,8 @@ export enum DetailTab {
 
 export enum transictionTypeEnum {
   all = "",
-  // debit = "debit",
-  // credit = "credit",
+  debit = "debit",
+  credit = "credit",
 }
 
 export interface CustomerAccountSettlementTabtButton {
